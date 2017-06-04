@@ -18,7 +18,7 @@ class CreatePersonsTable extends Migration
             $table->string('name')->index();
             $table->integer('age')->index();
             $table->string('city')->index();
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
