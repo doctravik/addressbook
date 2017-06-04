@@ -20,7 +20,7 @@ class PersonTransformer extends TransformerAbstract
             'name' => $person->name,
             'age' => (int) $person->age,
             'city' => $person->city,
-            'photo' => $person->photo
+            'photo' => $person->photoAbsolutePath()
         ];
     }
 }

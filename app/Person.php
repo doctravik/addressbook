@@ -4,6 +4,7 @@ namespace App;
 
 use App\Filters\Filter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Person extends Model
 {
@@ -29,5 +30,25 @@ class Person extends Model
     public function scopeFilter($query, Filter $filter)
     {
         return $filter->apply($query);
+    }
+
+    /**
+     * Generate relative path to the photo.
+     *
+     * @return string
+     */
+    public function photoRelativePath()
+    {
+        return config('image.path.relative') . '/' . $this->photo;
+    }
+
+    /**
+     * Generate relative path to the image.
+     *
+     * @return string
+     */
+    public function photoAbsolutePath()
+    {
+        return Storage::url($this->photoRelativePath());
     }
 }
