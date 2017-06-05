@@ -57,13 +57,12 @@ class Avatar
         return $this->name;
     }
 
-
     /**
      * Upload file to the storage.
      *
      * @return this
      */
-    public function process()
+    private function process()
     {
         Storage::put($path = $this->path(), (string) $this->resizeImage()->encode());
 
@@ -75,8 +74,9 @@ class Avatar
      */
     private function resizeImage()
     {
-        return Image::make($this->file)->fit(self::WIDTH, self::HEIGHT, function ($c) {
-            $c->aspectRatio();
-        });
+        return Image::make($this->file)
+            ->fit(self::WIDTH, self::HEIGHT, function ($c) {
+                $c->aspectRatio();
+            });
     }
 }

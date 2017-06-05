@@ -33,13 +33,16 @@ class PersonController extends Controller
      * Store person in db.
      *
      * @param PersonRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return array
      */
     public function store(PersonRequest $request)
     {
-        Person::create(request()->only('name', 'age', 'city'));
+        $person = Person::create(request()->only('name', 'age', 'city'));
 
-        return response()->json(null, 200);
+        return fractal()
+            ->item($person)
+            ->transformWith(new PersonTransformer())
+            ->toArray();
     }
 
     /**

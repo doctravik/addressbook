@@ -15,4 +15,13 @@ Route::get('/api/persons', 'Api\PersonController@index');
 Route::post('/api/persons', 'Api\PersonController@store');
 Route::put('/api/persons/{person}', 'Api\PersonController@update');
 Route::delete('/api/persons/{person}', 'Api\PersonController@destroy');
-Route::patch('/api/persons/{person}/avatar', 'Api\AvatarController@update');
+
+/**
+ * Avatar api endpoint
+ */
+Route::post('/api/persons/{person}/avatar', 'Api\AvatarController@store');
+
+/**
+ * Persons endpoints
+ */
+Route::get('/persons/{person}/edit', 'PersonController@edit');
