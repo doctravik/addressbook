@@ -4,7 +4,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/about', function() {
+    return view('about');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -25,3 +27,8 @@ Route::post('/api/persons/{person}/avatar', 'Api\AvatarController@store');
  * Persons endpoints
  */
 Route::get('/persons/{person}/edit', 'PersonController@edit');
+
+/**
+ * Auth endpoints
+ */
+Auth::routes();
