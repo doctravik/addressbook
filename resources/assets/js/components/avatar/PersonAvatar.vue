@@ -3,7 +3,7 @@
         <div class="media">
             <div class="media-left">
                 <img v-if="hasAvatar" :src="path" alt="avatar">
-                <img v-else src="http://placehold.it/100x100" alt="avatar">
+                <img v-else src="https://placehold.it/100x100" alt="avatar">
             </div>
             <div class="media-body">
                 <h1 class="media-heading" v-text="person.name"></h1>

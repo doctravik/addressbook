@@ -2,7 +2,7 @@
     <tr>
         <td>
             <img v-if="hasAvatar" :src="person.photo" alt="avatar">
-            <img v-else src="http://placehold.it/100x100" alt="avatar">
+            <img v-else src="https://placehold.it/100x100" alt="avatar">
         </td>
         <td>{{ person.name }}</td>
         <td>{{ person.age }}</td>

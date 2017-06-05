@@ -71,7 +71,10 @@
              * @return {void}
              */
             update() {
-                this.form.put(this.endpoint);
+                this.form.put(this.endpoint)
+                    .then(response => {
+                        eventDispatcher.$emit('update-person', response);
+                    });
             },
 
             /**

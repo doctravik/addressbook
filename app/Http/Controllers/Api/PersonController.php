@@ -55,7 +55,10 @@ class PersonController extends Controller
     {
         $person->update(request()->only('name', 'age', 'city'));
 
-        return response()->json(null, 200);
+        return fractal()
+            ->item($person->fresh())
+            ->transformWith(new PersonTransformer())
+            ->toArray();
     }
 
     /**
