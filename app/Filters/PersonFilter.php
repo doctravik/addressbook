@@ -21,7 +21,7 @@ class PersonFilter extends Filter
      */
     protected function name($name)
     {
-        return $this->builder->where('name', 'like', "%$name%");
+        return $this->builder->where('name', 'ilike', "%$name%");
     }
 
     /**
@@ -32,7 +32,7 @@ class PersonFilter extends Filter
      */
     protected function city($city)
     {
-        return $this->builder->where('city', 'like', "%$city%");
+        return $this->builder->where('city', 'ilike', "%$city%");
     }
 
     /**
