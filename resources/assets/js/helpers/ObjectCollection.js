@@ -8,6 +8,16 @@ class ObjectCollection
     }
 
     /**
+     * Set items.
+     *
+     * @param {object} items
+     * @return {void}
+     */
+    set(items) {
+      this.items = items;
+    }
+    
+    /**
      * Get the given property.
      *
      * @param {string} key

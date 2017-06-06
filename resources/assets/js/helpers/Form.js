@@ -135,7 +135,7 @@ class Form
      * @return {void}
      */
     onFail(errors) {
-        this.errors.record(errors);
+        this.errors.set(errors);
     }
 }
 

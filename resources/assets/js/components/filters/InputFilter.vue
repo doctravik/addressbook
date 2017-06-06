@@ -5,7 +5,7 @@
             v-bind:value="value"
             @input="update($event.target.value)">
         <span class="help-block" v-if="errors.has(name)">
-            <strong v-text="errors.get(name)"></strong>
+            <strong v-text="errors.get(name)[0]"></strong>
         </span>
     </div>
 </template>

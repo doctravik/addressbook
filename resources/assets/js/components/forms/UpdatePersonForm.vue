@@ -9,7 +9,7 @@
                     <input type="text" class="form-control" name="name"
                         v-model="form.name" required autofocus>
                     <span class="help-block" v-if="errors.has('name')">
-                        <strong v-text="errors.get('name')"></strong>
+                        <strong v-text="errors.get('name')[0]"></strong>
                     </span>
                 </div>
 
@@ -18,7 +18,7 @@
                     <input type="text" class="form-control" name="age"
                         v-model="form.age" required>
                     <span class="help-block" v-if="errors.has('age')">
-                        <strong v-text="errors.get('age')"></strong>
+                        <strong v-text="errors.get('age')[0]"></strong>
                     </span>
                 </div>
 
@@ -27,7 +27,7 @@
                     <input type="text" class="form-control" name="City"
                         v-model="form.city" required>
                     <span class="help-block" v-if="errors.has('city')">
-                        <strong v-text="errors.get('city')"></strong>
+                        <strong v-text="errors.get('city')[0]"></strong>
                     </span>
                 </div>
 

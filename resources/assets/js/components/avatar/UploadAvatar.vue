@@ -9,7 +9,7 @@
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
         </button>
         <span class="help-block" v-if="errors.has('photo')">
-            <strong v-text="errors.get('photo')"></strong>
+            <strong v-text="errors.get('photo')[0]"></strong>
         </span>
     </div>
 </template>
@@ -57,8 +57,8 @@
                         this.uploading = false;
                     })
                     .catch(error => {
-                        this.errors.record(error.response.data);
                         this.uploading = false;
+                        this.errors.set(error.response.data);
                     });
             },
 

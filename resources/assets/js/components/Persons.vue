@@ -76,7 +76,7 @@
                         this.errors.clear();
                     })
                     .catch(error => {
-                        this.errors.record(error.response.data);
+                        this.errors.set(error.response.data);
                     });
             },
 
