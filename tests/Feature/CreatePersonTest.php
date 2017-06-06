@@ -40,4 +40,28 @@ class CreatePersonTest extends TestCase
         $this->assertArrayHasKey('name', $response->json());
         $this->assertArrayHasKey('city', $response->json());
     }
+
+    /** @test */
+    public function it_cannot_create_person_with_age_more_200()
+    {
+        $response = $this->json('post', '/api/persons', [
+            'age' => 201
+        ]);
+
+        $response->assertStatus(422);
+        $this->assertCount(0, Person::all());
+        $this->assertArrayHasKey('age', $response->json());
+    }
+
+    /** @test */
+    public function it_cannot_create_person_with_age_less_than_1()
+    {
+        $response = $this->json('post', '/api/persons', [
+            'age' => 0
+        ]);
+
+        $response->assertStatus(422);
+        $this->assertCount(0, Person::all());
+        $this->assertArrayHasKey('age', $response->json());
+    }
 }

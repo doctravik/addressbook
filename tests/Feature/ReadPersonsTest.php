@@ -50,12 +50,25 @@ class ReadPersonsTest extends TestCase
     }
 
     /** @test */
-    public function it_filters_persons_by_age()
+    public function it_filters_persons_by_the_min_age()
+    {
+        $emma = factory(Person::class)->create(['age' => 30]);
+        $leon = factory(Person::class)->create(['age' => 25]);
+
+        $response = $this->json('get', '/api/persons?minAge=30');
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['id' => $emma->id]);
+        $response->assertJsonMissing(['id' => $leon->id]);
+    }
+
+    /** @test */
+    public function it_filters_persons_by_the_max_age()
     {
         $emma = factory(Person::class)->create(['age' => 30]);
         $leon = factory(Person::class)->create(['age' => 35]);
 
-        $response = $this->json('get', '/api/persons?age=30');
+        $response = $this->json('get', '/api/persons?maxAge=30');
 
         $response->assertStatus(200);
         $response->assertJsonFragment(['id' => $emma->id]);
@@ -157,5 +170,41 @@ class ReadPersonsTest extends TestCase
         $response->assertStatus(200);
         $this->assertEquals('emma', $ordered->first()['name']);
         $this->assertEquals('leon', $ordered->last()['name']);
+    }
+
+    /** @test */
+    public function it_cannot_sort_persons_if_minAge_is_not_integer()
+    {
+        $response = $this->json('get', '/api/persons?minAge=young');
+
+        $response->assertStatus(422);
+        $this->assertArrayHasKey('minAge', $response->json());
+    }
+
+    /** @test */
+    public function it_cannot_sort_persons_if_maxAge_is_not_integer()
+    {
+        $response = $this->json('get', '/api/persons?maxAge=young');
+
+        $response->assertStatus(422);
+        $this->assertArrayHasKey('maxAge', $response->json());
+    }
+
+    /** @test */
+    public function it_cannot_sort_persons_if_order_has_niether_asc_no_desc_values()
+    {
+        $response = $this->json('get', '/api/persons?order=more');
+
+        $response->assertStatus(422);
+        $this->assertArrayHasKey('order', $response->json());
+    }
+
+    /** @test */
+    public function it_cannot_sort_persons_if_sort_has_no_valid_values()
+    {
+        $response = $this->json('get', '/api/persons?sort=anything');
+
+        $response->assertStatus(422);
+        $this->assertArrayHasKey('sort', $response->json());
     }
 }

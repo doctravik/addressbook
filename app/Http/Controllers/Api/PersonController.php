@@ -8,6 +8,7 @@ use App\Filters\PersonFilter;
 use App\Http\Requests\PersonRequest;
 use App\Http\Controllers\Controller;
 use App\Transformers\PersonTransformer;
+use App\Http\Requests\FilterPersonRequest;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class PersonController extends Controller
@@ -18,7 +19,7 @@ class PersonController extends Controller
      * @param Filter $filters
      * @return array
      */
-    public function index(PersonFilter $filters)
+    public function index(FilterPersonRequest $request, PersonFilter $filters)
     {
         $persons = Person::filter($filters)->paginate(10);
 

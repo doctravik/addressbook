@@ -11,7 +11,7 @@ class PersonFilter extends Filter
      *
      * @var array
      */
-    protected $filters = ['name', 'city', 'age', 'sort'];
+    protected $filters = ['name', 'city', 'minAge', 'maxAge', 'sort'];
 
     /**
      * Filter the query by a name.
@@ -36,14 +36,25 @@ class PersonFilter extends Filter
     }
 
     /**
-     * Filter the query by an age.
+     * Filter the query by the min age.
      *
      * @param int $age
      * @return Builder
      */
-    protected function age($age)
+    protected function minAge($age)
     {
-        return $this->builder->where('age', '=', $age);
+        return $this->builder->where('age', '>=', $age);
+    }
+
+    /**
+     * Filter the query by the max age.
+     *
+     * @param int $age
+     * @return Builder
+     */
+    protected function maxAge($age)
+    {
+        return $this->builder->where('age', '<=', $age);
     }
 
 

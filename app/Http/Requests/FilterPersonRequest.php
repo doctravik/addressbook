@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PersonRequest extends FormRequest
+class FilterPersonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class PersonRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3',
-            'age' => 'required|integer|min:1|max:200',
-            'city' => 'required'
+            'order' => 'sometimes|string|in:asc,desc',
+            'sort' => 'sometimes|string|in:name,age,city',
+            'minAge' => 'sometimes|integer|between:1,200',
+            'maxAge' => 'sometimes|integer|between:1,200',
         ];
     }
 }
