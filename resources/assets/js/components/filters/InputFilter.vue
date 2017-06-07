@@ -24,10 +24,7 @@
                 value = this.normalize(value);
 
                 this.$refs.input.value = value;
-
-                if (value) {
-                    this.$emit('input', value);
-                }
+                this.$emit('input', value);
             },
 
             /**
